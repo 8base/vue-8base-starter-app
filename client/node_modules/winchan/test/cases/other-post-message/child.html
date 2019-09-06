@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<body></body>
+<script>
+  window.opener.postMessage('some-other-message', '*');
+  setTimeout(() => {
+    //close the window so it closes the test popup
+    window.close();
+  }, 100);
+</script>
+</html>

@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- node
+before_deploy:
+- npm run build
+- npm run test-with-coverage
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: M@rtinBabinec.cz
+  api_key:
+    secure: jETGbHscyfd5Z3YP5lVem23cWs1ays6v6QxadXgzYKOauaN0AeUaVo05HDMN3tnGNuj26P7hjuiBioEmQgmG6ITKPbaQyI+9bFC5X8Q0DrCrB5i6s264FtNqJJsTPwHl6sMFzpmQ5rbjORfIMwHuAi8CpeKOdqVwQ/D3f0P1RgIP77/FJJ9RCBApbaDE7ARKpMYGA2vpi6z0y6gOzuM2E0WkmJWzFb4ZXwEQwevrVmTgbyF/12hN4bKQgCM08CScFqCQqQa11hVWjsBphkJSgCJEWnUPIz65oiOMXTNRelhV9NVwPk6O4f5mC6TqsegRdC2s9H0Zl95Pc4nUHPxbw+KaF6lZSqMh821tWWXdlX2ST0bJGYEvi62JAfNvDix7Rx+1I3gKb1tOisqLyhfO1NOlFfu0pVSujxngBe/0lXFXuf3EVsHG6o31cx0Uim9ExiJI1wcam8L8Zw1GmQ5pHtMIPbd+HtNbF8lkHTlxHJxm/XECeB3uUmOyN9hR/DOmQhrQYpS6I7jeL0TB1/cCWVIgr5iphFvR4imcLUHEKwR8fgFor3zHyd+u8GlICTQdDh6ehLtOBHM5wq6HxmJezjgV0FXhb5rLJJGekctA1HI7EZW2SMZ3I1bH1upp6t+tlKffCc0TGhgrkrxFSvL/CztJng2v34P1Nhu7paTz1Hs=
+  on:
+    tags: true
+    all_branches: true
+    repo: Emetrop/graphql-prettier
