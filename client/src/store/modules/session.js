@@ -2,11 +2,6 @@ import auth from "@/utils/auth.js";
 import * as gql from "@/utils/graphql"; 
 import graphqlClient from "@/utils/api"; 
 /**
- * 8base auth profile ID. Found in 8base authentication
- * profile settings.
- */
-const AUTH_PROFILE_ID = "cjz1n3hw700ae01mlhe4tfepw";
-/**
  * State maintains the authentication state using Vuex.
  * Determines "authenticated" status by presence of 
  * "idToken" in local storage while storing the 
@@ -104,7 +99,7 @@ const actions = {
         mutation: gql.USER_SIGN_UP_MUTATION,
         variables: {
           user: { email: authResult.email },
-          authProfileId: AUTH_PROFILE_ID
+          authProfileId: process.env.VUE_APP_AUTH_PROFILE_ID
         },
         context
       });

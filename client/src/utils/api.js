@@ -12,7 +12,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
  * The 8base workspace endpoint goes here.
  */
 const httpLink = new HttpLink({
-  uri: "https://api.8base.com/cjz1n2qrk00f901jt2utcc3m0"
+  uri: process.env.VUE_APP_WORKSPACE_ENDPOINT
 });
 /**
  * Error Link takes a function that is called in the event of an error. 

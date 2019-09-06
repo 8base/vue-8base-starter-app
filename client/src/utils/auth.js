@@ -3,8 +3,8 @@ import { Auth, AUTH_STRATEGIES } from "@8base/auth";
  * Creating an Authentication Profile in 8base will provide 
  * you with a Client ID and Domain.
  */
-const domain = 'secure.8base.com';
-const clientId = 'p24uWnr2gGUxhUEUBOdfooYJSUIAX2E7';
+const domain = process.env.VUE_APP_AUTH_DOMAIN;
+const clientId = process.env.VUE_APP_AUTH_CLIENT_ID;
 /**
  * The redirect and logout URIs are all configured in the 
  * authentication profile that gets set up in the 8base
