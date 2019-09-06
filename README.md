@@ -23,6 +23,9 @@ The relevant files are:
 2. **GraphQL API**
 The app utilizes an 8base workspace for accessing and updating it's data using the GraphQL API. The code for this is neatly wrapped into two modules that get used mainly within the Vuex modules. However, one example also exists in the "Profile" page of querying the API.
 
+3. **Styles (or not...)**
+This project is totally unstyles, minus a few minor css classes. If you'd like to add your own styling, go for it! However, we didn't want your first few steps being to rip out a chosen CSS framework to begin implimenting another.
+
 The relevant files are:
 * `client/src/utils/api.js` - Configure apollo client for error handling, auth, and the workspace endpoint
 * `client/src/utils/graphql.js` - Build a library of GraphQL queries, mutations, and subscriptions.
