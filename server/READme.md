@@ -23,11 +23,11 @@ $ 8base import -f data/todos-data.json
 
 4. Once the *Doer* role is created, click into it and update the *Read* and *Update* permissions for the *Boards* and *Todos* table to only permit "User's Records". This will enforce the proper scope for what resources a user has access to!
 
-![Updating Roles](https://ibb.co/pZLgSxY)
+![Updating Roles](./.readme-assets/roles-set.gif)
 
 5. Go to `Settings > Authentication` in 8base console and add a new authentication profile. Let's name it "Default Auth", select "8base Authentication", select "Open to All", and add the *Doer* role to roles. This configuration will allow open sign-up to our app, and make sure that any new user is assign the *Doer* role.
 
-![Updating Roles](https://i.imgur.com/IgPO7mq.png)
+![Updating Roles](./.readme-assets/auth-prof.png)
 
 6. Depending on what port you develop on, you may need to change the custom domains. Scroll down and update the custom domains to whitelist port 8080, as well as add a *Allowed Web Origin* of `http://localhost:8080`.
 
