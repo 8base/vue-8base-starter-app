@@ -15,19 +15,19 @@ There are several awesome things that have been done in this application to help
 The app enables sign-in and sign-up functionality using 8base auth (auth0 under the hood). Plus, it gives an example of enforcing authentication at the router level using guards.
 
 The relevant files are:
-* `src/utils/auth.js` - Configure, initialize, and export the 8base auth client.
-* `src/store/modules/session.js` - Vuex manager for auth related state.
-* `src/App.vue` - View providing sign-in / sign-out buttons.
-* `src/router.js` - Example of auth checking router guard.
+* `client/src/utils/auth.js` - Configure, initialize, and export the 8base auth client.
+* `client/src/store/modules/session.js` - Vuex manager for auth related state.
+* `client/src/App.vue` - View providing sign-in / sign-out buttons.
+* `client/src/router.js` - Example of auth checking router guard.
 
 2. **GraphQL API**
 The app utilizes an 8base workspace for accessing and updating it's data using the GraphQL API. The code for this is neatly wrapped into two modules that get used mainly within the Vuex modules. However, one example also exists in the "Profile" page of querying the API.
 
 The relevant files are:
-* `src/utils/api.js` - Configure apollo client for error handling, auth, and the workspace endpoint
-* `src/utils/graphql.js` - Build a library of GraphQL queries, mutations, and subscriptions.
-* `src/store/modules/[todo|sessoin].js` - Executes queries against Api using module.
-* `src/views/Profile.vue` - Runs query in component (outside state manager)
+* `client/src/utils/api.js` - Configure apollo client for error handling, auth, and the workspace endpoint
+* `client/src/utils/graphql.js` - Build a library of GraphQL queries, mutations, and subscriptions.
+* `client/src/store/modules/[todo|sessoin].js` - Executes queries against Api using module.
+* `client/src/views/Profile.vue` - Runs query in component (outside state manager)
 
 ## Steps taken to initialize the App
 
