@@ -10,7 +10,8 @@ const clientId = process.env.VUE_APP_AUTH_CLIENT_ID;
  * authentication profile that gets set up in the 8base
  * management console.
  */
-const logoutRedirectUri = `${window.location.origin}/`;
+/* NOTE DYLAN */
+const logoutRedirectUri = `${window.location.origin}/logout`;
 const redirectUri = `${window.location.origin}/auth/callback`;
 /**
  * There are multiple auth strategies that can be 

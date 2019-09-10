@@ -38,6 +38,10 @@ const router = new Router({
       path: "/auth/callback",
       name: "callback",
       component: Callback
+    },
+    {
+      path: "/logout",
+      redirect: "/"
     }
   ]
 });

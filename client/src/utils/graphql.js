@@ -3,7 +3,7 @@ import gql from "graphql-tag";
  * Query the current users details.
  */
 export const CURRENT_USER_QUERY = gql`
-  query CurrentUser {
+  query {
     user {
       id
       email

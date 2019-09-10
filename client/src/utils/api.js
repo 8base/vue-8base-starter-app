@@ -3,6 +3,12 @@ import { onError } from "apollo-link-error";
 import { ApolloClient } from "apollo-client";
 import { setContext } from "apollo-link-context";
 import { InMemoryCache } from "apollo-cache-inmemory";
+
+/**
+ * Import store to handle logout on expired token.
+ */
+import store from "@/store";
+
 /**
  * A terminating link that fetches GraphQL results from 
  * a GraphQL endpoint over an http connection.
@@ -15,6 +21,20 @@ const httpLink = new HttpLink({
   uri: process.env.VUE_APP_WORKSPACE_ENDPOINT
 });
 /**
+ * Common error handlers.
+ */
+/* NOTE DYLAN */
+const errorHandlers = {
+  /* Logout on expired token */
+  TokenExpiredError: () => store.dispatch('logout'),
+  /* Invalid token supplied */
+  InvalidTokenError: ({ message }) => console.log(`[Token error]: Message: ${message}`),
+  /* Default error handler */
+  default: ({ message, locations, path }) => {
+    console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
+  }
+};
+/**
  * Error Link takes a function that is called in the event of an error. 
  * This function is called to do some custom logic when a GraphQL or 
  * network error happens.
@@ -23,9 +43,7 @@ const httpLink = new HttpLink({
  */
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    graphQLErrors.map(({ message, locations, path }) =>
-      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
-    );
+    graphQLErrors.map((args) => (errorHandlers[args.code] || errorHandlers.default)(args));
   }
 
   if (networkError) console.log(`[Network error]: ${networkError}`);
@@ -41,8 +59,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
  */
 const authLink = setContext((_, { headers }) => ({
   headers: {
-    ...headers,
-    authorization: `Bearer ${localStorage.getItem("id_token")}`
+    authorization: `Bearer ${localStorage.getItem("id_token")}`,
+    ...headers
   }
 }));
 /**

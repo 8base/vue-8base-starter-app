@@ -95,7 +95,7 @@ const actions = {
      * created using the authResult values.
      */
     catch {
-      graphqlClient.mutate({
+      await graphqlClient.mutate({
         mutation: gql.USER_SIGN_UP_MUTATION,
         variables: {
           user: { email: authResult.email },
