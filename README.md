@@ -1,40 +1,57 @@
-# 8base + VueJS Todos App
+# 🎱 8base + VueJS Starter App 🏎️
 
-Hey there! Thanks for checking out this project. It's intended to be an epic starting point when building VueJS + 8base apps. Really quickly, lets break down what that means.
+This project is a starter app for getting started with VueJS + 8base! The app is pre-configured to use 8base user authentication and the GraphQL API, so you can immediately hop into building something awesome. 
 
-#### VueJS
-[Vue](https://vuejs.org/v2/guide/) is a progressive framework for building killer user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.
+You'll need to create an [8base workspace](https://app.8base.com) and [Authentication Profile](https://docs.8base.com/8base-console/authentication#8base-authentication). Once that's done... ALL you need to do is set some enironment variables!  
 
-#### 8base
-[8base](https://docs.8base.com/) is a GraphQL API and serverless backend that lets developers quickly build world-class applications. It's fully extensible using Javascript, and handles things like database setup (initialization, migrations, management), roles and permissions, user authentication, and serverless deployment like a pro! The core feature set of 8base allows any developer to set-up fully scalable back-end infrastructure for their applications.
+### Running the App
+To run the app, you're going to need to first install its dependencies.
 
-### Steps taken to create
+```sh
+$ npm install
+```
+1. The [.env](./.env) file provides a template of the required environment variables. These variables are all collected from your workspace, and enable both authentication and api connectivity.
 
-##### Client
-The client app was initialized using the `vue-cli v3.1.0`. All files in the project are extensively documented with file comments. We encourage you to look through the code, starting at [client/src/main.js](././client/src/main.js).
+```sh
+VUE_APP_WORKSPACE_ENDPOINT=<YOUR_WORKSPACE_ENDPOINT>
+VUE_APP_AUTH_PROFILE_ID=<YOUR_AUTH_PROFILE_ID>
+VUE_APP_AUTH_CLIENT_ID=<YOUR_AUTH_CLIENT_ID>
+VUE_APP_AUTH_DOMAIN=<YOUR_AUTH_DOMAIN>
+```
 
-**Vue Configurations**
-* Manually select fatures
-* Babel, PWA, Router, Vuex, and Linter
-* History mode
-* ESLint + Prettier
-* Lint on save
-* In dedicated config files
+**NOTE**: Create a `.env.local` file to avoid commiting your environment variables!
 
-To install dependencies, set required variables, and run the app, view the [client READme](./client/README.md)
+2. Run the app... seriously, just run it now.
 
-##### Server
-The server resources are contained in an 8base workspace, providing a GraphQL API that's automatically generated in accordance with the projects data model. 8base is also handling / providing authentication, authorization, and the database. 
+```sh
+npm run serve
+```
 
-To set up an 8base workspace that works in tandem with the Vue ToDo app, view the [server READme](./server/README.md)
+3. Visit [http://localhost:8080](http://localhost:8080) to test it out.
 
-### Learning Resources
-To learn more about developing with 8base and Vue, here are some awesome resources!
+### TL;DR
+There are several awesome things that have been done in this application to help you get started. Let's take a look at them:
 
-**8base**
-* [8base Documentation](https://docs.8base.com)
-* [YouTube Learning Academy](https://8base.com/c/8base)
+1. **User Authentication**
+The app enables sign-in and sign-up functionality using 8base auth (auth0 under the hood). Plus, it gives an example of enforcing authentication at the router level using guards.
 
-**Vue**
-* [Vue Documentation](https://vuejs.org/v2/guide/)
-* [Vue Learning Videos](https://www.youtube.com/results?search_query=vue+js)
+The relevant files are:
+* `client/src/utils/auth.js` - Configure, initialize, and export the 8base auth client.
+* `client/src/store/modules/session.js` - Vuex manager for auth related state.
+* `client/src/App.vue` - View providing sign-in / sign-out buttons.
+* `client/src/router.js` - Example of auth checking router guard.
+
+2. **GraphQL API**
+The app utilizes an 8base workspace for accessing and updating it's data using the GraphQL API. The code for this is neatly wrapped into two modules that get used mainly within the Vuex modules. However, one example also exists in the "Profile" page of querying the API.
+
+The relevant files are:
+* `client/src/utils/api.js` - Configure apollo client for error handling, auth, and the workspace endpoint
+* `client/src/utils/graphql.js` - Build a library of GraphQL queries, mutations, and subscriptions.
+* `client/src/store/modules/session.js` - Executes queries against Api using module.
+* `client/src/views/Profile.vue` - Runs query in component (outside state manager)
+
+3. **Styles (or not...)**
+This project is totally unstyles, minus a few minor css classes. If you'd like to add your own styling, go for it! However, we didn't want your first few steps being to rip out a chosen CSS framework to begin implimenting another.
+
+### Contributing
+Feel welcome to fork this project and change it as you need, or submit a pull request with comments and improvements!
