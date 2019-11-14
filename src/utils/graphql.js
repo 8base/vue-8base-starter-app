@@ -21,3 +21,22 @@ export const USER_SIGN_UP_MUTATION = gql`
     }
   }
 `;
+/**
+ * Random query for example.
+ */
+export const RANDOM_QUERY = gql`
+  query {
+    salesforce {
+      account(id: "0013i000005ur7yAAA") {
+        Name
+        Phone
+        boards {
+          count
+          items {
+            name
+          }
+        }
+      }
+    }
+  }
+`;
