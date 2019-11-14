@@ -13,6 +13,7 @@ $ npm install
 1. The [.env](./.env) file provides a template of the required environment variables. These variables are all collected from your workspace, and enable both authentication and api connectivity.
 
 ```sh
+PORT=3000
 VUE_APP_WORKSPACE_ENDPOINT=<YOUR_WORKSPACE_ENDPOINT>
 VUE_APP_AUTH_PROFILE_ID=<YOUR_AUTH_PROFILE_ID>
 VUE_APP_AUTH_CLIENT_ID=<YOUR_AUTH_CLIENT_ID>
