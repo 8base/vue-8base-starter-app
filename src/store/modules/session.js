@@ -1,10 +1,10 @@
 import auth from "@/utils/auth.js";
-import * as gql from "@/utils/graphql"; 
-import graphqlClient from "@/utils/api"; 
+import * as gql from "@/utils/graphql";
+import graphqlClient from "@/utils/api";
 /**
  * State maintains the authentication state using Vuex.
- * Determines "authenticated" status by presence of 
- * "idToken" in local storage while storing the 
+ * Determines "authenticated" status by presence of
+ * "idToken" in local storage while storing the
  * idTokens value returned by the auth provider.
  */
 const state = {
@@ -26,7 +26,7 @@ const getters = {
    */
   idToken(state) {
     return state.idToken;
-  }  
+  }
 };
 /**
  * State mutations for setting state properties.
@@ -67,13 +67,13 @@ const actions = {
   logout({ commit }) {
     auth.logout();
 
-    commit('logout');
+    commit("logout");
   },
   /**
    * Checks if user is registered in 8base, if not signs up the user.
-   * Afterwards stores the authentication data in Vuex State. 
-   * 
-   * This function utilizes methods available on the auth model that is 
+   * Afterwards stores the authentication data in Vuex State.
+   *
+   * This function utilizes methods available on the auth model that is
    * stored in utils/auth.js.
    */
   async handleAuthentication({ commit }) {
@@ -82,8 +82,8 @@ const actions = {
      * Auth headers for communicating with the 8base API.
      */
     const context = {
-      headers: { 
-        authorization: `Bearer ${authResult.idToken}` 
+      headers: {
+        authorization: `Bearer ${authResult.idToken}`
       }
     };
     /**
@@ -94,13 +94,12 @@ const actions = {
         query: gql.CURRENT_USER_QUERY,
         context
       });
-    }
-    /**
-     * If user doesn't exist, an error will be
-     * thrown, which then the new user can be
-     * created using the authResult values.
-     */
-    catch {
+    } catch {
+      /**
+       * If user doesn't exist, an error will be
+       * thrown, which then the new user can be
+       * created using the authResult values.
+       */
       await graphqlClient.mutate({
         mutation: gql.USER_SIGN_UP_MUTATION,
         variables: {

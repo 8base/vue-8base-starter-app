@@ -1,12 +1,12 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
-import Profile from "./views/Profile.vue";
-import Callback from "./views/Callback.vue";
+import Home from "@/views/Home.vue";
+import Profile from "@/views/Profile.vue";
+import Callback from "@/views/Callback.vue";
 /**
  * Import the state for determining current auth state.
  */
-import store from "@/store"
+import store from "@/store";
 
 Vue.use(Router);
 /**
@@ -27,7 +27,7 @@ const router = new Router({
       name: "profile",
       component: Profile,
       meta: { requiresAuth: true }
-    },    
+    },
     {
       path: "/about",
       name: "about",
@@ -47,18 +47,17 @@ const router = new Router({
 });
 
 /**
- * Impliment router guards 
+ * Impliment router guards
  * for protected routes.
  */
 router.beforeEach((to, from, next) => {
   /* If the route requires auth */
   if (to.meta.requiresAuth) {
-    store.getters.authenticated ? next() : next({ name: 'home' })
-  } 
-  /* If the route is public */
-  else {
-    next()
+    store.getters.authenticated ? next() : next({ name: "home" });
+  } else {
+    /* If the route is public */
+    next();
   }
-})
+});
 
 export default router;
