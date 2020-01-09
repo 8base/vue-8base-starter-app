@@ -27,5 +27,5 @@ export default {
      */
     graphqlClient.query({ query }).then(resp => (this.user = resp.data.user));
   }
-}
+};
 </script>

@@ -1,38 +1,39 @@
 {
-  "name": "vuejs-todos-app",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "@8base/auth": "^0.36.0",
-    "apollo-cache-inmemory": "^1.6.3",
-    "apollo-client": "^2.6.4",
-    "apollo-link-context": "^1.0.18",
-    "apollo-link-error": "^1.1.11",
-    "apollo-link-http": "^1.5.15",
-    "core-js": "^2.6.5",
-    "graphql": "^14.5.3",
-    "graphql-tag": "^2.10.1",
-    "register-service-worker": "^1.6.2",
-    "vue": "^2.6.10",
-    "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.10.0",
-    "@vue/cli-plugin-eslint": "^3.10.0",
-    "@vue/cli-plugin-pwa": "^3.10.0",
-    "@vue/cli-service": "^3.10.0",
-    "@vue/eslint-config-prettier": "^5.0.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "prettier": "^1.18.2",
-    "vue-template-compiler": "^2.6.10"
-  }
+	"name": "vuejs-todos-app",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build",
+		"lint": "vue-cli-service lint --fix"
+	},
+	"dependencies": {
+		"@8base/auth": "^1.1.4",
+		"apollo-cache-inmemory": "^1.6.3",
+		"apollo-client": "^2.6.4",
+		"apollo-link-context": "^1.0.19",
+		"apollo-link-error": "^1.1.12",
+		"apollo-link-http": "^1.5.16",
+		"core-js": "^3.4.1",
+		"graphql": "^14.5.8",
+		"graphql-tag": "^2.10.1",
+		"register-service-worker": "^1.6.2",
+		"vue": "^2.6.10",
+		"vue-router": "^3.1.3",
+		"vuex": "^3.1.2"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "^4.0.5",
+		"@vue/cli-plugin-eslint": "^4.0.5",
+		"@vue/cli-plugin-pwa": "^4.0.5",
+		"@vue/cli-service": "^4.0.5",
+		"@vue/eslint-config-prettier": "^6.0.0",
+		"babel-eslint": "^10.0.3",
+		"eslint": "^6.6.0",
+		"eslint-plugin-prettier": "^3.1.1",
+		"eslint-plugin-vue": "^6.0.1",
+		"prettier": "^1.19.1",
+		"vue-cli-plugin-webpack-bundle-analyzer": "^2.0.0",
+		"vue-template-compiler": "^2.6.10"
+	}
 }

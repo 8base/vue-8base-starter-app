@@ -4,9 +4,9 @@ import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = process.env.NODE_ENV === "production" ? false : true;
 /**
- * Initialize the vue app and mount to the 
+ * Initialize the vue app and mount to the
  * root component id.
  */
 new Vue({

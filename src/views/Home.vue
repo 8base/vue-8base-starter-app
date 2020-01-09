@@ -6,16 +6,14 @@
     <code>{{ prettifyResp }}</code>
   </div>
 
-  <h1 v-else>
-    You need to login!
-  </h1>
+  <h1 v-else>You need to login!</h1>
 </template>
 
 <script>
 /* Import packages */
 import { mapGetters } from "vuex";
 import graphqlClient from "@/utils/api";
-import { RANDOM_QUERY as query } from "@/utils/graphql";
+import { CURRENT_USER_QUERY as query } from "@/utils/graphql";
 
 export default {
   name: "home",
