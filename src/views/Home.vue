@@ -14,8 +14,8 @@
 <script>
 /* Import packages */
 import { mapGetters } from "vuex";
-import graphqlClient from "@/utils/api";
-import { RANDOM_QUERY as query } from "@/utils/graphql";
+import { api } from "@/utils/eightBase";
+import { RANDOM_QUERY } from "@/utils/graphql";
 
 export default {
   name: "home",
@@ -36,7 +36,7 @@ export default {
   },
   mounted() {
     if (this.authenticated) {
-      graphqlClient.query({ query }).then(resp => (this.data = resp.data));
+      api.request(RANDOM_QUERY).then(resp => (this.data = resp.data));
     }
   }
 };

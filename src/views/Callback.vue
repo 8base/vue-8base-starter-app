@@ -5,18 +5,18 @@
 </template>
 
 <script>
-import router from '@/router'
-import { mapActions } from 'vuex'
+import router from "@/router";
+import { mapActions } from "vuex";
 
 export default {
-  name: 'Callback',
+  name: "Callback",
 
-  methods: mapActions(['handleAuthentication']),
+  methods: mapActions(["handleAuthentication"]),
 
-  async mounted () {
+  async mounted() {
     await this.handleAuthentication();
-    
-    router.push({ name: 'home' });
+
+    router.push({ name: "home" });
   }
-}
+};
 </script>

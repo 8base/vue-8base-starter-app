@@ -16,4 +16,3 @@ export default new Vuex.Store({
     session
   }
 });
-

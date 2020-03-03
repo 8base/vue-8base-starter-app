@@ -1,10 +1,10 @@
-import auth from "@/utils/auth.js";
-import * as gql from "@/utils/graphql"; 
-import graphqlClient from "@/utils/api"; 
+import { auth, api } from "@/utils/eightBase";
+import { CURRENT_USER_QUERY } from "@/utils/graphql";
+
 /**
  * State maintains the authentication state using Vuex.
- * Determines "authenticated" status by presence of 
- * "idToken" in local storage while storing the 
+ * Determines "authenticated" status by presence of
+ * "idToken" in local storage while storing the
  * idTokens value returned by the auth provider.
  */
 const state = {
@@ -26,7 +26,7 @@ const getters = {
    */
   idToken(state) {
     return state.idToken;
-  }  
+  }
 };
 /**
  * State mutations for setting state properties.
@@ -65,50 +65,44 @@ const actions = {
    * Logs out and updates Vuex state's authentication data
    */
   logout({ commit }) {
-    auth.logout();
+    commit("logout");
 
-    commit('logout');
+    auth.signOut();
   },
   /**
    * Checks if user is registered in 8base, if not signs up the user.
-   * Afterwards stores the authentication data in Vuex State. 
-   * 
-   * This function utilizes methods available on the auth model that is 
+   * Afterwards stores the authentication data in Vuex State.
+   *
+   * This function utilizes methods available on the auth model that is
    * stored in utils/auth.js.
    */
   async handleAuthentication({ commit }) {
     const authResult = await auth.getAuthorizedData();
-    /**
-     * Auth headers for communicating with the 8base API.
-     */
-    const context = {
-      headers: { 
-        authorization: `Bearer ${authResult.idToken}` 
-      }
-    };
+    const { idToken, idTokenPayload } = authResult;
     /**
      * Check if user exists in 8base.
      */
-    try {
-      await graphqlClient.query({
-        query: gql.CURRENT_USER_QUERY,
-        context
-      });
-    }
+    const userResponse = await api.request(
+      CURRENT_USER_QUERY,
+      {},
+      /**
+       * Auth headers for communicating with the 8base API.
+       */
+      {
+        headers: {
+          Authorization: `Bearer ${idToken}`
+        }
+      }
+    );
     /**
      * If user doesn't exist, an error will be
      * thrown, which then the new user can be
      * created using the authResult values.
      */
-    catch {
-      await graphqlClient.mutate({
-        mutation: gql.USER_SIGN_UP_MUTATION,
-        variables: {
-          user: { email: authResult.email },
-          authProfileId: process.env.VUE_APP_AUTH_PROFILE_ID
-        },
-        context
-      });
+    if (userResponse.errors && userResponse.errors.length !== 0) {
+      const { email } = idTokenPayload;
+
+      await auth.signUpWithToken({ email }, idToken);
     }
     /* commit the auth data to state */
     commit("authenticated", authResult);

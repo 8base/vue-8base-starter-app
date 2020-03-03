@@ -28,7 +28,7 @@ VUE_APP_AUTH_DOMAIN=<YOUR_AUTH_DOMAIN>
 npm run serve
 ```
 
-3. Visit [http://localhost:8080](http://localhost:8080) to test it out.
+3. Visit [http://localhost:3000](http://localhost:3000) to test it out.
 
 ### TL;DR
 There are several awesome things that have been done in this application to help you get started. Let's take a look at them:
