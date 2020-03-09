@@ -14,7 +14,7 @@
 <script>
 /* Import packages */
 import { mapGetters } from "vuex";
-import { api } from "@/utils/eightBase";
+import { api } from "@/8base";
 import { RANDOM_QUERY } from "@/utils/graphql";
 
 export default {

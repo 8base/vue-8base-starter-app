@@ -11,6 +11,7 @@
     "8base-js-sdk": "^0.1.5",
     "core-js": "^2.6.5",
     "register-service-worker": "^1.6.2",
+    "subscriptions-transport-ws": "^0.9.16",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"

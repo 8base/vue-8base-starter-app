@@ -1,4 +1,4 @@
-import { auth, api } from "@/utils/eightBase";
+import { auth, api } from "@/8base";
 import { CURRENT_USER_QUERY } from "@/utils/graphql";
 
 /**
