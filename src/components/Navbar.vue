@@ -19,19 +19,24 @@
 </style>
 
 <template>
-	<div id="nav">
-	  <!-- App title -->
-	  <h1>VueJS ❤️ 8base</h1>
-	  
-	  <router-link to="/">Home</router-link> |
-	  <router-link to="/about">About</router-link> | 
-	  <router-link to="/profile" :class="profileBtn.class" :event="profileBtn.event">
-	    Profile
-	  </router-link> - 
+  <div id="nav">
+    <!-- App title -->
+    <h1>VueJS ❤️ 8base</h1>
 
-	  <!-- Display SignIn/SignOut btn dynamically -->
-	  <button @click="authBtn.fn">{{authBtn.txt}}</button>
-	</div>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link> |
+    <router-link
+      to="/profile"
+      :class="profileBtn.class"
+      :event="profileBtn.event"
+    >
+      Profile
+    </router-link>
+    -
+
+    <!-- Display SignIn/SignOut btn dynamically -->
+    <button @click="authBtn.fn">{{ authBtn.txt }}</button>
+  </div>
 </template>
 
 <script>
@@ -48,29 +53,34 @@ export default {
      * Manage the state of the auth button
      * in the nav.
      */
-    authBtn () {
-      return this.authenticated ? {
-        txt: 'Sign Out',
-        fn: this.logout
-      } : {
-        txt: 'Sign In',
-        fn: this.login
-      }
+    authBtn() {
+      return this.authenticated
+        ? {
+            txt: "Sign Out",
+            fn: this.logout
+          }
+        : {
+            txt: "Sign In",
+            fn: this.login
+          };
     },
     /**
      * Manage the state of the profile button
      * in the nav.
-     */    
-    profileBtn () {
-      return this.authenticated ? {
-        class: '',
-        event: 'click'
-      } : {
-        class: 'isDisabled',
-        event: ''
-      }     
+     */
+
+    profileBtn() {
+      return this.authenticated
+        ? {
+            class: "",
+            event: "click"
+          }
+        : {
+            class: "isDisabled",
+            event: ""
+          };
     },
-    
+
     ...mapGetters(["authenticated"])
   },
   /**
@@ -78,5 +88,5 @@ export default {
    * of baords are reflect mutations.
    */
   methods: mapActions(["login", "logout"])
-}
+};
 </script>

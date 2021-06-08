@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import graphqlClient from "@/utils/api";
-import { CURRENT_USER_QUERY as query } from "@/utils/graphql";
+import { api } from "@/8base";
+import { CURRENT_USER_QUERY } from "@/utils/graphql";
 
 export default {
   data() {
@@ -25,7 +25,9 @@ export default {
     /**
      * Queryies the authenticated users information from 8base.
      */
-    graphqlClient.query({ query }).then(resp => (this.user = resp.data.user));
+    api.request(CURRENT_USER_QUERY).then(resp => {
+      this.user = resp.data.user  
+    });
   }
-}
+};
 </script>
