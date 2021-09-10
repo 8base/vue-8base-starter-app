@@ -1,17 +1,21 @@
-const authProfileId = process.env.VUE_APP_AUTH_PROFILE_ID;
-const clientId = process.env.VUE_APP_AUTH_CLIENT_ID;
-const domain = process.env.VUE_APP_AUTH_DOMAIN;
+import { Auth, AUTH_STRATEGIES } from '8base-sdk';
+
+import store from "@/store";
+
 /**
- * Find more information about the JS SDK's Auth config
- * at https://docs.8base.com/
+ * There are multiple auth strategies that can be
+ * used when using 8base. By default, specifying
+ * 'web_8base_cognito' will configure the 8base auth client.
  */
-export default {
-  strategy: "AUTH0_AUTH",
-  settings: {
-    domain,
-    clientId,
-    authProfileId,
+export const auth = Auth.createClient(
+  {
+    strategy: AUTH_STRATEGIES.WEB_8BASE_COGNITO,
+    subscribable: true,
+  },
+  {
+    domain: process.env.VUE_APP_AUTH_DOMAIN,
+    clientId: process.env.VUE_APP_AUTH_CLIENT_ID,
     logoutRedirectUri: `${window.location.origin}/logout`,
-    redirectUri: `${window.location.origin}/auth/callback`
+    redirectUri: `${window.location.origin}/auth/callback`,
   }
-};
+);

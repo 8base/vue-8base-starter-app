@@ -1,5 +1,5 @@
 import { auth, api } from "@/8base";
-import { CURRENT_USER_QUERY } from "@/utils/graphql";
+import { CURRENT_USER_QUERY, USER_SIGN_UP_MUTATION } from "@/utils/graphql";
 
 /**
  * State maintains the authentication state using Vuex.
@@ -67,7 +67,7 @@ const actions = {
   logout({ commit }) {
     commit("logout");
 
-    auth.signOut();
+    auth.logout();
   },
   /**
    * Checks if user is registered in 8base, if not signs up the user.
@@ -78,31 +78,38 @@ const actions = {
    */
   async handleAuthentication({ commit }) {
     const authResult = await auth.getAuthorizedData();
-    const { idToken, idTokenPayload } = authResult;
+    /**
+     * Auth headers for communicating with the 8base API.
+     */
+    const context = {
+      headers: {
+        authorization: `Bearer ${authResult.idToken}`
+      }
+    };
     /**
      * Check if user exists in 8base.
      */
-    const userResponse = await api.request(
-      CURRENT_USER_QUERY,
-      {},
+    try {
+      await api.query({
+        query: CURRENT_USER_QUERY,
+        context
+      });
+    } catch {
       /**
-       * Auth headers for communicating with the 8base API.
+       * If user doesn't exist, an error will be
+       * thrown, which then the new user can be
+       * created using the authResult values.
        */
-      {
-        headers: {
-          Authorization: `Bearer ${idToken}`
-        }
-      }
-    );
-    /**
-     * If user doesn't exist, an error will be
-     * thrown, which then the new user can be
-     * created using the authResult values.
-     */
-    if (userResponse.errors && userResponse.errors.length !== 0) {
-      const { email } = idTokenPayload;
-
-      await auth.signUpWithToken({ email }, idToken);
+      await api.mutate({
+        mutation: USER_SIGN_UP_MUTATION,
+        variables: {
+          user: {
+            email: authResult.email,
+          },
+          authProfileId: process.env.VUE_APP_AUTH_PROFILE_ID
+        },
+        context
+      });
     }
     /* commit the auth data to state */
     commit("authenticated", authResult);

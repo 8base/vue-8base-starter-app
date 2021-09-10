@@ -25,7 +25,9 @@ export default {
     /**
      * Queryies the authenticated users information from 8base.
      */
-    api.request(CURRENT_USER_QUERY).then(resp => {
+    api.query({
+      query: CURRENT_USER_QUERY
+    }).then(resp => {
       this.user = resp.data.user  
     });
   }
