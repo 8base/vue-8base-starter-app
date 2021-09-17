@@ -53,7 +53,7 @@ The relevant files are:
 * `src/utils/graphql.js` - Build a library of GraphQL queries, mutations, and subscriptions.
 
 3. **Styles (or not...)**
-This project is totally unstyles, minus a few minor css classes. If you'd like to add your own styling, go for it! However, we didn't want your first few steps being to rip out a chosen CSS framework to begin implimenting another.
+This project is totally unstyled, minus a few minor css classes. If you'd like to add your own styling, go for it! However, we didn't want your first few steps being to rip out a chosen CSS framework to begin implimenting another.
 
 ### Contributing
 Feel welcome to fork this project and change it as you need, or submit a pull request with comments and improvements!
